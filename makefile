@@ -1,5 +1,5 @@
 # Advent of code day
-DAY=1
+DAY ?= 2
 
 # Things you don't want to change
 REPO_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
@@ -15,8 +15,11 @@ lint: ## 🌟 Lint & format
 	@$(GOLINT_PATH) > /dev/null || curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh
 	$(GOLINT_PATH) run ./...
 
-run: ## 🚀 Run code for given day
-	cd day-$(DAY); go run main.go
+run: banner ## 🚀 Run code for given day
+	@cd day-$(DAY); go run main.go
 
-test: ## 🧪 Test the code for a given day
+test: banner ## 🧪 Test the code for a given day
 	cd day-$(DAY); go test -v
+
+banner:
+	@echo "\n\e[34m╭───────────────────────────────────╮\n│\e[32m   📅🎄🌟 Advent Of Code : \e[31mDay $(DAY)   \e[34m│\n╰───────────────────────────────────╯\e[34m\e[00m"

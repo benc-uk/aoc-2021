@@ -1,20 +1,16 @@
 package main
 
 import (
-	"fmt"
 	"math"
 
 	"github.com/benc-uk/aoc-2021/utils"
 )
 
 func main() {
-	data := utils.LoadFileAsIntArray("./data/input")
+	data := utils.LoadFileAsIntArray("./input")
 
-	count := part1(data)
-	fmt.Println("### PART 1: Count of height increments:", count)
-
-	count = part2(data, 3)
-	fmt.Println("### PART 2: Count of windowed height increments:", count)
+	utils.PrintAnswer(1, part1(data))
+	utils.PrintAnswer(2, part2(data, 3))
 }
 
 func part1(data []int) int {
@@ -35,7 +31,7 @@ func part2(data []int, windowSize int) int {
 		windowSum := 0
 		for i := 0; i < windowSize; i++ {
 			if w+i >= len(data) {
-				//windowSum = -1
+				windowSum = -1
 				break
 			} else {
 				windowSum += data[w+i]
