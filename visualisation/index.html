@@ -63,7 +63,7 @@
       const depthDataRaw = game.cache.text.get('depthData');
       depthData = depthDataRaw.split('\n');
       for (let i = 0; i < depthData.length; i++) {
-        drawFloor(i * floorWidth, depthData[i], this, graphics)
+        drawFloor(i * floorWidth, depthData[i], graphics)
       }
 
       sub = this.add.image(390, 300, 'sub').setScale(2)
@@ -77,7 +77,7 @@
       this.add.text(180, 20, '🎁 Advent Of Code 🌟', { fontFamily: 'Consolas', fontSize: "60px" }).setShadow(5, 5, 'rgba(0,0,0,0.5)', 7).setScrollFactor(0)
     }
 
-    function drawFloor(x, y, scene, graphics) {
+    function drawFloor(x, y, graphics) {
       let color = new Phaser.Display.Color(191, 144, 109);
       color.darken(Math.min(y / 80, 100));
       color.desaturate(Math.max(y / 70, 0.1));

@@ -8,6 +8,8 @@ import (
 	"strconv"
 )
 
+var DebugEnabled = false
+
 func PrintAnswer(part int, answer int) {
 	fmt.Printf(" ✨ Part %d answer: \033[35m%v\033[0m \n", part, answer)
 }
@@ -51,4 +53,10 @@ func LoadFileAsStringArray(filename string) []string {
 	}
 
 	return data
+}
+
+func Debug(s string) {
+	if DebugEnabled {
+		fmt.Printf("\033[35m%s\n\033[0m", s)
+	}
 }
