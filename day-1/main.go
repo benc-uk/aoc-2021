@@ -10,7 +10,7 @@ func main() {
 	data := utils.LoadFileAsIntArray("./input")
 
 	utils.PrintAnswer(1, part1(data))
-	utils.PrintAnswer(2, part2(data, 3))
+	utils.PrintAnswer(2, part2(data))
 }
 
 func part1(data []int) int {
@@ -24,20 +24,11 @@ func part1(data []int) int {
 	return count
 }
 
-func part2(data []int, windowSize int) int {
+func part2(data []int) int {
 	prevWindow := math.MaxInt32
 	count := 0
-	for w := 0; w < len(data); w++ {
-		windowSum := 0
-		for i := 0; i < windowSize; i++ {
-			if w+i >= len(data) {
-				windowSum = -1
-				break
-			} else {
-				windowSum += data[w+i]
-			}
-		}
-
+	for i := 0; i <= len(data)-3; i++ {
+		windowSum := data[i] + data[i+1] + data[i+2]
 		if windowSum > prevWindow {
 			count++
 		}

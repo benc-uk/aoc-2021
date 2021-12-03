@@ -1,23 +1,20 @@
 package main
 
 import (
-	"fmt"
+	"github.com/benc-uk/aoc-2021/utils"
 )
 
 func main() {
-	data := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	data := utils.LoadFileAsStringArray("./input")
 
-	result := part1(data)
-	fmt.Println("### PART 1: ", result)
-
-	result = part2(data)
-	fmt.Println("### PART 2: ", result)
+	utils.PrintAnswer(1, part1(data))
+	utils.PrintAnswer(2, part2(data))
 }
 
-func part1(data []int) int {
+func part1(data []string) int {
 	return 1
 }
 
-func part2(data []int) int {
+func part2(data []string) int {
 	return 1
 }

@@ -9,7 +9,7 @@ import (
 )
 
 func PrintAnswer(part int, answer int) {
-	fmt.Printf("    🎇 Part %d answer: %v ✨\n", part, answer)
+	fmt.Printf(" ✨ Part %d answer: \033[35m%v\033[0m \n", part, answer)
 }
 
 func LoadFileAsIntArray(filename string) []int {

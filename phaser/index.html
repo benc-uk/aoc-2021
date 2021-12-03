@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advent Of Code</title>
+  <script src="//cdn.jsdelivr.net/npm/phaser@3.55.2/dist/phaser.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: black;
+    }
+  </style>
+</head>
+
+<body>
+  <script>
+    var config = {
+      type: Phaser.WEBGL,
+      width: 1024,
+      height: 768,
+      backgroundColor: '#000033',
+      pixelArt: false,
+      scene: {
+        preload: preload,
+        create: create,
+        update: update
+      },
+      scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH,
+        min: {
+          width: 800,
+          height: 600
+        },
+      },
+    };
+
+    var game = new Phaser.Game(config);
+    let sub
+    let bg
+    let depthData
+    let light
+    const floorWidth = 8
+
+    function preload() {
+      this.load.image('sub', './sub.png');
+      this.load.image("background", "./bg.png");
+      this.load.text('depthData', './input.txt');
+    }
+
+    function create() {
+      bg = this.add.image(0, 0, "background")
+        .setOrigin(0)
+        .setScale(1.2)
+        .setScrollFactor(0)
+
+      graphics = this.add.graphics();
+
+      const depthDataRaw = game.cache.text.get('depthData');
+      depthData = depthDataRaw.split('\n');
+      for (let i = 0; i < depthData.length; i++) {
+        drawFloor(i * floorWidth, depthData[i], this, graphics)
+      }
+
+      sub = this.add.image(390, 300, 'sub').setScale(2)
+
+      this.cameras.main.startFollow(sub);
+      const lightPolyData = [0, 0, 30, 100, 0, 110, -30, 100];
+      light = this.add.polygon(sub.x, sub.y, lightPolyData).setOrigin(0).setScale(2, 1.3)
+      light.setFillStyle(0xefc53f);
+      light.setRotation(-0.1)
+
+      this.add.text(180, 20, '🎁 Advent Of Code 🌟', { fontFamily: 'Consolas', fontSize: "60px" }).setShadow(5, 5, 'rgba(0,0,0,0.5)', 7).setScrollFactor(0)
+    }
+
+    function drawFloor(x, y, scene, graphics) {
+      let color = new Phaser.Display.Color(191, 144, 109);
+      color.darken(Math.min(y / 80, 100));
+      color.desaturate(Math.max(y / 70, 0.1));
+      graphics.fillStyle(color.color32);
+      graphics.fillRect(x, y, floorWidth, 3);
+    }
+
+    let tick = 0
+    function update() {
+      tick++
+      const speed = 6
+      const index = Math.floor((sub.x + speed) / floorWidth)
+      if (depthData[index]) {
+        sub.x += speed;
+        sub.y = depthData[index] - 130;
+        light.x = sub.x + 30;
+        light.y = sub.y + 20;
+      }
+
+      let lightAlpha = (Math.abs(tick % 60 - 30) / 50);
+      light.setAlpha(lightAlpha);
+
+      bg.alpha = 1 - (sub.x / 8000)
+    }
+  </script>
+
+</body>
+
+</html>
