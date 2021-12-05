@@ -4,27 +4,41 @@ My attempt at Advent of Code 2021, written in Go using a lot of brute force and 
 
 https://adventofcode.com/2021
 
-## Usage
+## Progress
+
+<table>
+  <tr>
+    <td>
+      <pre>
+Day 1 ⭐⭐
+Day 2 ⭐⭐
+Day 3 ⭐⭐
+Day 4 ⭐⭐
+Day 5 ⭐</pre>
+    </td>
+  </tr>
+</table>
+
+## Running
 
 Use make and set the `DAY` variable to what ever day you are running or testing, default day is 1.
+
+All tests should pass of course, to give you that false sense you're not wasting your life. They are run on the example input rather than the full input.
 
 ```bash
 make test
 make test DAY=2
 ```
 
-All tests should pass, they are run on the example input rather than the full input
-
 To get the real answers use `make run`, for example for day 4
 
 ```bash
-make run DAY=4 
+make run DAY=4
 
 🌟══════════════════════════════════🌟
 ║   📅🎄🎁 Advent Of Code : Day 04   ║
 🌟══════════════════════════════════🌟
-  🟣🟢🟠  Day 4: Giant Squid 🟠🟢🟣
-
+  🟣🟢🟠 Day 4: Giant Squid 🟠🟢🟣
 
 First board to win was 66, with number: 66
  84   78   03   44   96
@@ -41,5 +55,4 @@ Final board to win was 31, with number: 6
 [44]  25  [69] [81]  33
  73  [52] [10] [74] [55]
  ✨ Part 2 answer: 1831
-
 ```
