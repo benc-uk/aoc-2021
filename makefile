@@ -4,7 +4,7 @@ DAY ?= 2
 # Things you don't want to change
 REPO_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 GOLINT_PATH := $(REPO_DIR)/bin/golangci-lint
-
+TITLE := $(shell head -n 1 day-$(DAY)/README.md)
 .PHONY: help run lint test
 .DEFAULT_GOAL := help
 
@@ -22,4 +22,6 @@ test: banner ## 🧪 Test the code for a given day
 	cd day-$(DAY); go test -v
 
 banner:
-	@echo "\n\e[34m🌟══════════════════════════════════🌟\n║\e[32m   📅🎄🎁 Advent Of Code : \e[31mDay $(shell printf %02d $(DAY))   \e[34m║\n🌟══════════════════════════════════🌟\e[34m\e[00m"
+	@echo "\n\e[34m🌟══════════════════════════════════🌟\n║\e[0m\e[32m   📅🎄🎁 Advent Of Code : \e[31mDay $(shell printf %02d $(DAY))   \e[34m║\n🌟══════════════════════════════════🌟"
+	@echo "\e[35;5m  🟣🟢🟠 $(TITLE) 🟠🟢🟣"
+	@echo "\e[0m"
