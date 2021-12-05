@@ -9,37 +9,37 @@ import (
 var data []string
 
 const part1Answer = 5
-const part2Answer = 2000
-
-var grid [][]int
+const part2Answer = 12
 
 func TestMain(t *testing.T) {
-	data := utils.LoadFileAsStringArray("./data/test")
+	data = utils.LoadFileAsStringArray("./data/test")
+	size = 10
+}
 
-	grid = make([][]int, size)
+func TestPart1(t *testing.T) {
+	grid := make([][]int, size)
 	for i := 0; i < size; i++ {
 		grid[i] = make([]int, size)
 	}
 
-	populateGrid(data, grid)
-	//printGrid(grid)
-
-	//utils.PrintAnswer(1, part1(grid))
-	// utils.PrintAnswer(2, part2(grid))
-}
-
-func TestPart1(t *testing.T) {
-	result := part1(grid)
+	populateGrid(data, grid, false)
+	result := countVents(grid)
 
 	if result != part1Answer {
 		t.Errorf("Expected %d, got %d", part1Answer, result)
 	}
 }
 
-// func TestPart2(t *testing.T) {
-// 	result := part2(data)
+func TestPart2(t *testing.T) {
+	grid := make([][]int, size)
+	for i := 0; i < size; i++ {
+		grid[i] = make([]int, size)
+	}
 
-// 	if result != part2Answer {
-// 		t.Errorf("Expected %d, got %d", part2Answer, result)
-// 	}
-// }
+	populateGrid(data, grid, true)
+	result := countVents(grid)
+
+	if result != part2Answer {
+		t.Errorf("Expected %d, got %d", part2Answer, result)
+	}
+}
