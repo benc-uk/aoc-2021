@@ -1,10 +1,11 @@
 # Advent of code day
-DAY ?= 2
+DAY ?= 4
 
 # Things you don't want to change
 REPO_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
 GOLINT_PATH := $(REPO_DIR)/bin/golangci-lint
-TITLE := $(shell head -n 1 day-$(DAY)/README.md)
+TITLE := $(subst \# $(),,$(shell head -n 1 day-$(DAY)/README.md))
+
 .PHONY: help run lint test
 .DEFAULT_GOAL := help
 
@@ -23,5 +24,5 @@ test: banner ## 🧪 Test the code for a given day
 
 banner:
 	@echo "\n\e[34m🌟══════════════════════════════════🌟\n║\e[0m\e[32m   📅🎄🎁 Advent Of Code : \e[31mDay $(shell printf %02d $(DAY))   \e[34m║\n🌟══════════════════════════════════🌟"
-	@echo "\e[35;5m  🟣🟢🟠 $(TITLE) 🟠🟢🟣"
+	@echo "\e[35;5m  🟣🟢🟠 $(TITLE) \e[0m🟠🟢🟣"
 	@echo "\e[0m"
