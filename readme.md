@@ -14,14 +14,15 @@ Day 1 ⭐⭐
 Day 2 ⭐⭐
 Day 3 ⭐⭐
 Day 4 ⭐⭐
-Day 5 ⭐</pre>
+Day 5 ⭐⭐
+Day 6 ⭐⭐</pre>
     </td>
   </tr>
 </table>
 
 ## Running
 
-Use make and set the `DAY` variable to what ever day you are running or testing, default day is 1.
+Use make and set the `DAY` variable to what ever day you are running or testing.
 
 All tests should pass of course, to give you that false sense you're not wasting your life. They are run on the example input rather than the full input.
 

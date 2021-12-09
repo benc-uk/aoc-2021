@@ -1,5 +1,5 @@
 # Advent of code day
-DAY ?= 4
+DAY ?= 6
 
 # Things you don't want to change
 REPO_DIR := $(abspath $(dir $(lastword $(MAKEFILE_LIST))))
